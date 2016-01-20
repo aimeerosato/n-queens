@@ -90,7 +90,6 @@
         return counterObj;
       }, {empty: 0, full: 0});
       
-
       return tracker.full >= 2 ? true : false;
       
     },
@@ -115,21 +114,40 @@
 
     },
 
-
-
     // COLUMNS - run from top to bottom
     // --------------------------------------------------------------
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      //loop through rows and check the colIndex for 0 or 1.
+        //if two 1's, thre's a conflict
+
+      var board = this;
+      //this.get(rowIndex)[colIndex] is the item in that column;
+      var empty = 0;
+      var full = 0;
+      for(var i = 0; i < board.rows().length; i++){
+        if(board.get(i)[colIndex] === 0){
+          empty++;
+        } else {
+          full++;
+        }
+      }
+
+      return full >= 2 ? true : false; 
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      var board = this;
+      var conflicts = false;
+      for(var i = 0; i < board.rows().length; i++){
+        if(board.hasColConflictAt(i)){
+          conflicts = true;
+        }
+      }
+      return conflicts;
     },
-
 
 
     // Major Diagonals - go from top-left to bottom-right
