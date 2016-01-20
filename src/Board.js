@@ -97,31 +97,22 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      // start at first row
-        // check if row conflict - can we call hasRowConflictAt
+      
+       var board = this;
+       var conflicts = false;
+
+       for(var i = 0; i < board.rows().length; i++){
+          if(board.hasRowConflictAt(i)){
+            conflicts = true;
+          }
+       }
+       return conflicts;
+       // start at first row
+       // check if row conflict - can we call hasRowConflictAt
           // if there's a conflict, return true
           // if there's no conflict, keep checking until the end
-            //return false
-      //this.rows().length; //words
-        var board = this;
-        var rowConflict = function (rowIndex) {
-          var row = board.get(rowIndex);
-          var tracker = row.reduce(function(counterObj, item){
-            if(item === 0){
-              counterObj.empty++;
-            } else if (item === 1){
-              counterObj.full++;
-            }
-          return counterObj;
-          }, {empty: 0, full: 0});
-      
-        return tracker.full >= 2 ? true : false;
-        };
+            //return false 
 
-        var allRows = board.rows();
-        var conflict = allRows.reduce(rowConflict(i), false);
-        console.log(conflict);
-        
     },
 
 
