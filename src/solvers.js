@@ -15,26 +15,14 @@
 
 window.findNRooksSolution = function(n) {
   //possible solution [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]]
-  var solution; //fixme
-  // puts it into an object weird
-  // {"0":[1,0,0,0],"1":[0,1,0,0],"2":[0,0,1,0],"3":[0,0,0,1],"n":4}
-  var board = new Board({n:n})
-  // Create board - an array that holds all the other arrays
-  // populate it with empty arrays
-  // var board = [];
-  // for(var i = 0; i < n; i++){
-  //   board[i] = [];
-  //   for(var j = 0; j < n; j++){
-  //     board[i][j] = 0;
-  //   }
-  // }
+  var solution; 
+
+  var board = new Board({n:n};
   
   //create counter for n number of players placed
   var players = 0;
-  //create empty board
-  //toggle(0,0);
+  
   for(var x = 0; x < n; x++){
-    //so....why can't i use it?
     board.togglePiece(x,x);
     players++;
   }
@@ -42,16 +30,6 @@ window.findNRooksSolution = function(n) {
   if(players === n){
     solution = board.rows();
   }
-
-  //board[0][0] = 1;
-  //place piece at 0,0
-    //increment 1
-  //check for rook conflicts
-  //place next piece where no conflicts
-    //increment 2
-  //continue until the end
-
-
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
@@ -61,7 +39,45 @@ window.findNRooksSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+  //keep track of solutions
+  var solutionCount = 0;
+
+  //create a blank board
+  var board = new Board({n:n});
+
+
+  //internal function?  
+  var solutionsCounter = function (rowInd, colInd){
+    //keep track of players placed - if it hits that, want to move on to finding next solution
+    var players = 0;
+
+    //base case set up, break out of recursion (return statement)
+    if(players === n || /*run out of rows*/){
+       // Loops through rows
+      for(var i = 0; i < board.rows().length; i++){
+        
+        //toggle one piece
+        board.toggle(i,i);
+        players++;
+    
+        //go down one row
+        //loop through row, check if column conflict, if not, toggle piece
+        if(!hasColConflictAt(index)){
+          board.toggle(/*that piece*/);
+          players++;
+        }
+        solutionsCounter(rowInd, colInd);
+        //on next row/column
+        
+        //check for conflicts
+        //toggle piece at first index where there are no conflicts
+        //go down one row
+      }//start at top corner
+    }
+  
+  };
+
+  //call solutionsCounter//with first case 0,0
 
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
