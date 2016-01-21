@@ -15,56 +15,41 @@
 
 window.findNRooksSolution = function(n) {
   //possible solution [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]]
-  var solution = [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]]; //fixme
-
+  var solution; //fixme
+  // puts it into an object weird
+  // {"0":[1,0,0,0],"1":[0,1,0,0],"2":[0,0,1,0],"3":[0,0,0,1],"n":4}
+  var board = new Board({n:n})
   // Create board - an array that holds all the other arrays
   // populate it with empty arrays
-  var board = [];
-  for(var i = 0; i < n; i++){
-    board[i] = [];
-  }
+  // var board = [];
+  // for(var i = 0; i < n; i++){
+  //   board[i] = [];
+  //   for(var j = 0; j < n; j++){
+  //     board[i][j] = 0;
+  //   }
+  // }
   
   //create counter for n number of players placed
   var players = 0;
-  board[0][0] = 1;
+  //create empty board
+  //toggle(0,0);
+  for(var x = 0; x < n; x++){
+    //so....why can't i use it?
+    board.togglePiece(x,x);
+    players++;
+  }
+
+  if(players === n){
+    solution = board.rows();
+  }
+
+  //board[0][0] = 1;
   //place piece at 0,0
     //increment 1
   //check for rook conflicts
   //place next piece where no conflicts
     //increment 2
   //continue until the end
-
-  //https://jsbin.com/calicehoyi/edit?js,console
-  //  var test = function (n) {
-  //    var board = [];
-
-  // for(var i = 0; i < n; i++){
-  //   board[i] = [];
-  // }
-  //   board[0][0] = 1;
-  //   board[0][1] = 0;
-  //   board[0][2] = 0;
-  //   board[0][3] = 0;
-    
-  //   board[1][0] = 0;
-  //   board[1][1] = 1;
-  //   board[1][2] = 0;
-  //   board[1][3] = 0;
-    
-  //   board[2][0] = 0;
-  //   board[2][1] = 0;
-  //   board[2][2] = 1;
-  //   board[2][3] = 0;
-    
-  //   board[3][0] = 0;
-  //   board[3][1] = 0;
-  //   board[3][2] = 0;
-  //   board[3][3] = 1;
-    
-  //   return board;
-  // };
-
-//console.log(test(4));
 
 
 
