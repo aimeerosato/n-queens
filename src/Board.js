@@ -234,7 +234,7 @@
        var board = this;
         var conflicts = false;
         for(var i = 0; i < board.rows().length; i++){
-          if(board.hasAnyMinorDiagonalConflictAt(i)){
+          if(board.hasMinorDiagonalConflictAt(i)){
             conflicts = true;
           }
         }
