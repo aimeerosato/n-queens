@@ -168,10 +168,10 @@
       var full = 0;
       var empty = 0;
       var loopNumber = boardLength - colIndex;
-
+      
+      if(colIndex>0){
         for(var i = 0; i < loopNumber; i++){
-           var row = board.get(i);
-         
+          var row = board.get(i);
           if(row[colIndex] === 1){
             full++;
             colIndex++;
@@ -180,6 +180,7 @@
             colIndex++;
           }
         }
+      }
     
       return full >= 2 ? true : false;
     },
@@ -212,7 +213,7 @@
 
       var loopNumber = colIndex + 1;
       
-     
+      if(colIndex >= 0 && colIndex < board.rows().length){
         for(var i = 0; i < loopNumber; i++){
           var row = board.get(i);
           if(row[colIndex] === 1){
@@ -223,6 +224,7 @@
             colIndex--;
           }
         }
+      }
       
     
       return full >= 2 ? true : false;
