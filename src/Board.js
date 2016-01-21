@@ -155,12 +155,60 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      //start at top row
+      //keep track of full/empty
+      //check item at the column index in the row, count it as full or empty
+      //move to next row down 
+      //check item at column index plus 1
+      //continue until end of loop
+
+      var board = this;
+    //   //this.get(rowIndex)[colIndex] is the item in that column;
+    //   //might have to check to see if col index is less than n
+
+      var colIndex = majorDiagonalColumnIndexAtFirstRow;
+      var boardLength = board.rows().length;
+      var full = 0;
+      var empty = 0;
+      var loopNumber = boardLength - colIndex;
+      //while(colIndex < boardLength - 1){
+      
+
+        for(var i = 0; i < loopNumber; i++){
+           var row = board.get(i);
+          console.log(row[colIndex]);
+          console.log(colIndex);
+          console.log(row);
+         
+          if(row[colIndex] === 1){
+            full++;
+            colIndex++;
+          } else {
+            empty++;
+            colIndex++;
+          }
+        }
+    //  }
+     
+      return full >= 2 ? true : false;
+      //lastrowIndex has to be boardlength - 1
+
+
+
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+    var board = this;
+      var conflicts = false;
+      for(var i = 0; i < board.rows().length; i++){
+        if(board.hasMajorDiagonalConflictAt(i)){
+          conflicts = true;
+        }
+      }
+      return conflicts;  
+    
+
     },
 
 
