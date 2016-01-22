@@ -103,7 +103,7 @@ window.countNQueensSolutions = function(n) {
       // Toggle first piece
       board.togglePiece(rowInd, j);
       // If there are no conflicts on the board, run recursively 
-      if( !board.hasAnyQueensConflicts() && !board.hasAnyMajorDiagonalConflicts() ) {
+      if( !board.hasAnyQueensConflicts() ) {
         solutionsCounter(rowInd+1);
       } 
       // If there is a conflict, toggle that piece before going back into the loop
@@ -112,11 +112,7 @@ window.countNQueensSolutions = function(n) {
 
   };
 
-  if(n !== 2 && n !== 3){
       solutionsCounter(0); 
-  }
-
-
 
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;

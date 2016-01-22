@@ -180,16 +180,16 @@
             colIndex++;
           }
         }
+
+        
       //}
     
       return full >= 2 ? true : false;
     },
 
-    //doesn't work if starts on second row
-    // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       var board = this;
-        var conflicts = false;
+      var conflicts = false;
         for(var i = 0; i < board.rows().length; i++){
           if(board.hasMajorDiagonalConflictAt(i)){
             conflicts = true;
@@ -214,7 +214,7 @@
 
       var loopNumber = colIndex + 1;
       
-      if(colIndex >= 0 && colIndex < board.rows().length){
+      if(colIndex >= 0){
         for(var i = 0; i < loopNumber; i++){
           var row = board.get(i);
           if(row[colIndex] === 1){
@@ -226,15 +226,13 @@
           }
         }
       }
-      
-    
       return full >= 2 ? true : false;
 
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-       var board = this;
+        var board = this;
         var conflicts = false;
         for(var i = 0; i < board.rows().length; i++){
           if(board.hasMinorDiagonalConflictAt(i)){
