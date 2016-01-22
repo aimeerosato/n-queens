@@ -180,8 +180,6 @@
             colIndex++;
           }
         }
-
-        
       //}
     
       return full >= 2 ? true : false;
