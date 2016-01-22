@@ -47,18 +47,20 @@ window.countNRooksSolutions = function(n) {
 
   //internal function?  
   var solutionsCounter = function (rowInd){
-  // Always start at top corner
-  
-    if(rowInd > n){
+
+    if(rowInd === n){
       solutionCount++;
       return;
     }
-  // Travel through every index on board
-    for(var j = 0; j < n; j++){
+ 
+    for( var j = 0; j < n; j++ ){
+      // Toggle first piece
       board.togglePiece(rowInd, j);
-      if(!board.hasAnyRooksConflicts()){
-        solutionsCounter(rowInd+1, 0);
-      }
+      // If there are no conflicts on the board, run recursively 
+      if( !board.hasAnyRooksConflicts() ){
+        solutionsCounter(rowInd+1);
+      } 
+      // If there is a conflict, toggle that piece before going back into the loop
       board.togglePiece(rowInd, j);
     }
 
@@ -75,6 +77,7 @@ window.countNRooksSolutions = function(n) {
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
   var solution = undefined; //fixme
+  //returning proper value tough
 
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
   return solution;
@@ -83,7 +86,37 @@ window.findNQueensSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+  var solutionCount = 0;
+
+    //create a blank board
+  var board = new Board({n:n});
+
+  //internal function?  
+  var solutionsCounter = function (rowInd){
+
+    if(rowInd === n){
+      solutionCount++;
+      return;
+    }
+  
+    for( var j = 0; j < n; j++ ){
+      // Toggle first piece
+      board.togglePiece(rowInd, j);
+      // If there are no conflicts on the board, run recursively 
+      if( !board.hasAnyQueensConflicts() && !board.hasAnyMajorDiagonalConflicts() ) {
+        solutionsCounter(rowInd+1);
+      } 
+      // If there is a conflict, toggle that piece before going back into the loop
+      board.togglePiece(rowInd, j);
+    }
+
+  };
+
+  if(n !== 2 && n !== 3){
+      solutionsCounter(0); 
+  }
+
+
 
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;

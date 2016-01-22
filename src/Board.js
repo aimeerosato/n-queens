@@ -169,7 +169,7 @@
       var empty = 0;
       var loopNumber = boardLength - colIndex;
       
-      if(colIndex>0){
+      //if(colIndex>0){
         for(var i = 0; i < loopNumber; i++){
           var row = board.get(i);
           if(row[colIndex] === 1){
@@ -180,11 +180,12 @@
             colIndex++;
           }
         }
-      }
+      //}
     
       return full >= 2 ? true : false;
     },
 
+    //doesn't work if starts on second row
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       var board = this;
